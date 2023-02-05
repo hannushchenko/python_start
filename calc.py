@@ -1,24 +1,23 @@
-# def num2calc():
-#     inputNum = input("enter 2 num: ")
-#     list2calc = list(inputNum)
-#     len2calc = len(list2calc)
-#     res = 0
-#     work = True
-#
-#     for n in list2calc:
-#         num = int(n)
-#         if num == 1 or num == 0:
-#             res = res + num * pow(2, len2calc-1)
-#             len2calc = len2calc - 1
-#         else:
-#             print("error")
-#             work = False
-#             break
-#
-#     if work:
-#         print(res)
-#
-# num2calc()
+def num2calc():
+    inputNum = input("enter 2 num: ")
+    list2calc = list(inputNum)
+    len2calc = len(list2calc)
+    res = 0
+    work = True
+
+    for n in list2calc:
+        num = int(n)
+        if num == 1 or num == 0:
+            res = res + num * pow(2, len2calc-1)
+            len2calc = len2calc - 1
+        else:
+            print("error")
+            work = False
+            break
+
+    if work:
+        print(res)
+
 
 def num16calc():
     checkList16num = ['0','1','2','3',
@@ -43,5 +42,20 @@ def num16calc():
     if work:
         print(res)
 
-num16calc()
+
+def menu():
+    mode_now = True
+    print(f"You are in {'2x' if mode_now else '16x' } calculation mode")
+
+    choice = input("If you want to change it, please write here `y`: ")
+    if choice.lower() == "y":
+        mode_now = not mode_now
+        num16calc()
+    else:
+        num2calc()
+
+
+menu()
+
+
 
