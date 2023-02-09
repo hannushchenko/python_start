@@ -4,21 +4,37 @@ numbers = [6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
 colors = ['♠','♥','♦','♣']
 cards = []
 myCards = []
-res = 0
 work = True
-has_a = False
+has_ace = 0
+
 
 def createCards():
     for c in colors:
         for n in numbers:
-            # print(n, c, end='  ')
-            cards.append((n,c))
+            match n:
+                case 'J':
+                    v = 2
+                case 'Q':
+                    v = 3
+                case 'K':
+                    v = 4
+                case 'A':
+                    v = 11
+                case 'a':
+                    v = 1
+                case _:
+                    v = int(n)
+            cards.append((n, c, v))
         # print('')
         return cards
 
 def pickRandom():
-    rand = random.randint(0,len(cards)-1)
-    delCard = cards.pop(rand)
+    global has_ace
+    randIndex = random.randint(0, len(cards)-1)
+    delCard = cards.pop(randIndex)
+    (n, c, v)= delCard
+    if n=="A":
+        has_ace +=1
     return delCard
 
 def startCards():
@@ -29,38 +45,40 @@ def startCards():
 
 def calculateResult():
     global work
-    global has_a
+    global has_ace
     res = 0
-    another_res=0
 
-    for c in myCards:
-        (a, b) = c
-        match a:
-            case 'J':
-                a = 2
-            case 'Q':
-                a = 3
-            case 'K':
-                a = 4
-            case 'A':
-                if res < 11:
-                    a = 11
-                    has_a = True
-                else:
-                    a = 1
-            case _:
-                a = int(a)
-        res += a
-    if(res>21):
-        if not has_a:
-            print("LOSE")
-            work = False
-        else:
-            res-=10
-    elif(res==21):
-        print("Win")
+    for card in myCards:
+        (n, c, v) = card
+        res += v
+    if res < 21:
+        print(f"РЕЗУЛЬТАТ: {res}")
+
+
+    if res == 21:
+        print("WIN!")
         work = False
-    print(res)
+    elif res > 21:
+        if has_ace > 0:
+            for card in myCards:
+                    (n, c, v) = card
+                    if n == "A":
+                        index_card = myCards.index(card)
+                        n = "a"
+                        v = 1
+                        res = res - 10
+                        has_ace = has_ace - 1
+                        myCards[index_card] = (n, c, v)
+
+            print(f"РЕЗУЛЬТАТ: {res}")
+
+        else:
+            print(f"LOSE {res}")
+            work = False
+    else:
+        getCard()
+
+
     return res
 
 def getCard():
@@ -70,7 +88,7 @@ def getCard():
         if q == '+':
             new = pickRandom()
             myCards.append(new)
-            print(new)
+            print(myCards)
             calculateResult()
         else:
             work = False
@@ -78,4 +96,3 @@ def getCard():
 createCards()
 startCards()
 calculateResult()
-getCard()
