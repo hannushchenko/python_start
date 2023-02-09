@@ -35,9 +35,8 @@ dogList = []
 # dogList.append(lila)
 
 new = Dog()
-print(new.__dict__)
+# print(new.__dict__)
 dogList.append(new)
-
 
 
 for dog in dogList:

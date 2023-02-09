@@ -10,7 +10,7 @@ for n in inputword:
     else:
         numb = ord(n)
         numb = numb + hard
-        if 90 < numb < 97:
+        if 90 < numb:
             numb = numb + 6
         result += chr(numb)
 
