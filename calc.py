@@ -1,9 +1,10 @@
 def num2calc():
-    inputNum = input("enter 2 num: ")
-    list2calc = list(inputNum)
+    inputnum = input("Enter 2 num: ")
+    list2calc = list(inputnum)
     len2calc = len(list2calc)
     res = 0
     work = True
+
 
     for n in list2calc:
         num = int(n)
@@ -20,21 +21,21 @@ def num2calc():
 
 
 def num16calc():
-    checkList16num = ['0','1','2','3',
+    checklist16num = ['0','1','2','3',
                       '4','5','6','7',
                       '8','9','a','b',
                       'c','d','e','f']
 
-    inputNum = input("enter num16: ")
+    inputnum = input("Enter num16: ")
     res = 0
     work = True
-    inputNumLen = len(inputNum)
+    inputnumlen = len(inputnum)
 
-    for symb in inputNum:
-        if str(symb) in checkList16num:
-            intSymb = checkList16num.index(symb)
-            res = res + intSymb * pow(16, inputNumLen-1)
-            inputNumLen = inputNumLen - 1
+    for symb in inputnum:
+        if str(symb) in checklist16num:
+            intsymb = checklist16num.index(symb)
+            res = res + intsymb * pow(16, inputnumlen-1)
+            inputnumlen = inputnumlen - 1
         else:
             print("error")
             work = False
@@ -44,18 +45,23 @@ def num16calc():
 
 
 def menu():
+    repeat = True
     mode_now = True
-    print(f"You are in {'2x' if mode_now else '16x' } calculation mode")
+    while repeat:
+        print(f"You are in {'2x' if mode_now else '16x' } calculation mode.")
 
-    choice = input("If you want to change it, please write here `y`: ")
-    if choice.lower() == "y":
-        mode_now = not mode_now
-        num16calc()
-    else:
-        num2calc()
+        choice = input("Type 'c' to change mode, or 'q' to exit: ")
+        if choice.lower() == "c":
+            mode_now = not mode_now
+        elif choice.lower() == 'q':
+            repeat = False
+        else:
+            pass
+
+        if mode_now==True:
+            num2calc()
+        else:
+            num16calc()
 
 
 menu()
-
-
-
