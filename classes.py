@@ -10,3 +10,4 @@ bobik = Dog("bobik", 3, "orange")
 toma = Dog("Toma", 11, "white", False)
 lila = Dog("Lila", male=False)
 
+
