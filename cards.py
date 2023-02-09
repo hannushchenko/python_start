@@ -6,6 +6,7 @@ cards = []
 myCards = []
 res = 0
 work = True
+has_a = False
 
 def createCards():
     for c in colors:
@@ -28,7 +29,10 @@ def startCards():
 
 def calculateResult():
     global work
+    global has_a
     res = 0
+    another_res=0
+
     for c in myCards:
         (a, b) = c
         match a:
@@ -41,14 +45,18 @@ def calculateResult():
             case 'A':
                 if res < 11:
                     a = 11
+                    has_a = True
                 else:
                     a = 1
             case _:
                 a = int(a)
         res += a
     if(res>21):
-        print("LOSE")
-        work = False
+        if not has_a:
+            print("LOSE")
+            work = False
+        else:
+            res-=10
     elif(res==21):
         print("Win")
         work = False
