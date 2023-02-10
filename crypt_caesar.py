@@ -1,8 +1,6 @@
-inputword = input("write word to crypt:").upper()
-
-hard = int(input("write hard 1-25: "))
-
-result =''
+inputword = input("Write phrase to crypt:").upper()
+hard = int(input("Write hardness (1-25): "))
+result = ''
 
 for n in inputword:
     if n in (' ', '.', ','):
@@ -14,7 +12,4 @@ for n in inputword:
             numb = numb + 6
         result += chr(numb)
 
-
 print(result.lower())
-
-# /91-96

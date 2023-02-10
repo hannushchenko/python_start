@@ -1,8 +1,12 @@
-file = open("classes.txt", 'w+')
+with open("classes.txt", 'r') as filer:
+    read = filer.read()
+    print(read)
+
+
 class Dog:
     def __init__(self):
         name = input("name: ")
-        if len(name) > 3:
+        if len(name) > 2:
             self.name = name
         else:
             self.name = None
@@ -27,6 +31,8 @@ class Dog:
 
 
 dogList = []
+new = Dog()
+dogList.append(new)
 # bobik = Dog("bobik", 3, "orange")
 # toma = Dog("Toma", 11, "white", False)
 # lila = Dog("Lila", male=False)
@@ -34,10 +40,7 @@ dogList = []
 # dogList.append(toma)
 # dogList.append(lila)
 
-new = Dog()
-# print(new.__dict__)
-dogList.append(new)
-
-
-for dog in dogList:
-    file.write(str(dog.__dict__)+"\n")
+with open("classes.txt", 'a+') as filea:
+    for dog in dogList:
+        filea.write(str(dog.__dict__)+"\n")
+        print(dog.__dict__)
