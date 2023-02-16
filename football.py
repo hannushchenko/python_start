@@ -34,12 +34,12 @@ def get_res():
         teams_res[i] = 0
         for pair in pairs:
             if pair['winner'] == i:
-                teams_res[i]+=3
+                teams_res[i] += 3
             elif pair['winner'] == None and (pair['home_name'] == i or pair['guest_name'] == i):
-                teams_res[i]+=1
+                teams_res[i] += 1
 
     print("=================================================")
-    print(*sorted(teams_res.items(), key = lambda x: x[1], reverse=True))
+    print(*sorted(teams_res.items(), key=lambda x: x[1], reverse=True))
 
 
 create_pairs()
